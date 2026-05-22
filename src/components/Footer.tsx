@@ -48,7 +48,7 @@ export function Footer() {
 
         <div className="mt-14 pt-6 border-t border-ivory/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-ivory/50">
           <p>© {new Date().getFullYear()} IPC Hebron Manjanikara. All rights reserved.</p>
-          <p className="italic">Soli Deo Gloria</p>
+          <p>Designed by Alwin Anil Zachariah</p>
         </div>
       </div>
     </footer>
