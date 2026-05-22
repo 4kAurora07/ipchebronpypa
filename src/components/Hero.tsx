@@ -12,8 +12,7 @@ export function Hero() {
           height={1280}
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-ivory)]/55 via-[color:var(--color-ivory)]/30 to-[color:var(--color-ivory)]"></div>
-        <div className="absolute inset-0 bg-[color:var(--color-charcoal)]/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-charcoal)]/70 via-[color:var(--color-charcoal)]/55 to-[color:var(--color-ivory)]"></div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-10 text-center pt-28 pb-20">
