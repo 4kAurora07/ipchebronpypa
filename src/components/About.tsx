@@ -2,18 +2,18 @@ import aboutImg from "@/assets/about-interior.jpg";
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 md:py-36 bg-[color:var(--color-ivory)]">
+    <section id="about" className="relative py-20 md:py-36 bg-[color:var(--color-ivory)]">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
-        <div className="grid md:grid-cols-2 gap-14 md:gap-20 items-center">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
             <p className="eyebrow">സ്വാഗതം · Welcome</p>
-            <span className="mt-5 block gold-divider"></span>
-            <h2 className="mt-6 font-serif text-4xl md:text-5xl leading-tight">
+            <span className="mt-4 block gold-divider"></span>
+            <h2 className="mt-5 font-serif text-3xl sm:text-4xl md:text-5xl leading-tight">
               A congregation rooted in faith,
               <span className="italic text-gold"> worship, and community.</span>
             </h2>
 
-            <div className="mt-8 space-y-5 text-foreground/80 leading-relaxed">
+            <div className="mt-6 space-y-4 text-foreground/80 text-[15px] sm:text-base leading-relaxed md:mt-8 md:space-y-5">
               <p>
                 For over five decades, IPC Hebron has stood quietly in
                 Manjanikara — a small congregation of families gathering each
@@ -29,24 +29,24 @@ export function About() {
                 into the sanctuary for the ladies&rsquo; meeting, and onto
                 our knees together every Friday for fasting prayer.
               </p>
-              <p className="font-mal text-foreground/75 italic">
+              <p className="font-mal text-foreground/75 italic mt-4">
                 പ്രാർത്ഥനയും സഹവാസവും — ദൈവകൃപയിൽ വളരുന്ന കുടുംബം.
               </p>
             </div>
 
-            <blockquote className="mt-10 pl-6 border-l-2 border-gold/70">
-              <p className="font-serif italic text-xl md:text-2xl leading-snug text-foreground/90">
+            <blockquote className="mt-8 pl-5 border-l border-gold/70 md:mt-10 md:pl-6 md:border-l-2">
+              <p className="font-serif italic text-lg md:text-2xl leading-snug text-foreground/90">
                 &ldquo;Where two or three gather in my name, there am I with
                 them.&rdquo;
               </p>
-              <footer className="mt-3 text-xs tracking-[0.2em] uppercase text-muted-foreground">
+              <footer className="mt-2.5 text-[10px] tracking-[0.2em] uppercase text-muted-foreground">
                 Matthew 18:20
               </footer>
             </blockquote>
           </div>
 
-          <div className="relative">
-            <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-[0_30px_80px_-30px_rgba(31,27,23,0.35)]">
+          <div className="relative mt-8 md:mt-0">
+            <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-[0_20px_50px_-20px_rgba(31,27,23,0.3)] md:shadow-[0_30px_80px_-30px_rgba(31,27,23,0.35)]">
               <img
                 src={aboutImg}
                 alt="Open Bible by warm window light"

@@ -10,35 +10,65 @@ const people = [
 const MAPS = "https://maps.app.goo.gl/hwUhrPBwtAe5jQAu7";
 
 export function Contact() {
+  const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
-    (e.target as HTMLFormElement).reset();
-    setTimeout(() => setSent(false), 4000);
+    setSending(true);
+    setError(null);
+
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/ipchebronpypa10@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          _subject: "New Message from IPC Hebron Manjanikara Website",
+        }),
+      });
+
+      if (response.ok) {
+        setSent(true);
+        (e.target as HTMLFormElement).reset();
+        setTimeout(() => setSent(false), 5000);
+      } else {
+        throw new Error("Failed to send message.");
+      }
+    } catch (err) {
+      setError("Failed to send. Please try again or call us directly.");
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
-    <section id="contact" className="relative py-24 md:py-36 bg-[color:var(--color-ivory)]">
+    <section id="contact" className="relative py-20 md:py-36 bg-[color:var(--color-ivory)]">
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow">Get in Touch</p>
-          <div className="mt-5 flex justify-center"><span className="gold-divider"></span></div>
-          <h2 className="mt-6 font-serif text-4xl md:text-5xl leading-tight">
+          <div className="mt-4 flex justify-center"><span className="gold-divider"></span></div>
+          <h2 className="mt-5 font-serif text-3xl sm:text-4xl md:text-5xl leading-tight">
             We would love to <span className="italic text-gold">hear from you</span>
           </h2>
         </div>
 
-        <div className="mt-16 grid md:grid-cols-2 gap-10 lg:gap-16">
+        <div className="mt-12 grid md:grid-cols-2 gap-8 lg:gap-16">
           {/* Left: details */}
-          <div className="space-y-8">
-            <div className="bg-[color:var(--color-cream)]/60 border border-border/70 p-7">
+          <div className="space-y-6 md:space-y-8">
+            <div className="bg-[color:var(--color-cream)]/60 border border-border/70 p-6 md:p-7">
               <div className="flex items-start gap-4">
                 <MapPin className="text-gold mt-1 shrink-0" size={20} />
                 <div>
                   <p className="eyebrow">Visit Us</p>
-                  <p className="mt-2 font-serif text-xl">
+                  <p className="mt-2 font-serif text-lg md:text-xl">
                     Manjanikara, Pathanamthitta
                   </p>
                   <p className="text-muted-foreground text-sm">Kerala, India</p>
@@ -46,7 +76,7 @@ export function Contact() {
                     href={MAPS}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-4 inline-flex items-center gap-2 text-sm text-gold hover:underline underline-offset-4"
+                    className="mt-3.5 inline-flex items-center gap-2 text-sm text-gold hover:underline underline-offset-4"
                   >
                     Open in Google Maps <ExternalLink size={14} />
                   </a>
@@ -59,13 +89,13 @@ export function Contact() {
                 <a
                   key={p.role}
                   href={`tel:${p.phone.replace(/\s+/g, "")}`}
-                  className="group block bg-card border border-border/70 p-6 transition-all hover:border-gold hover:shadow-[0_20px_50px_-30px_rgba(184,155,94,0.5)]"
+                  className="group block bg-card border border-border/70 p-5 md:p-6 transition-all hover:border-gold md:hover:shadow-[0_20px_50px_-30px_rgba(184,155,94,0.5)] active:scale-[0.99]"
                 >
                   <div className="flex items-center justify-between gap-4">
                     <div>
                       <p className="eyebrow">{p.role}</p>
-                      <p className="mt-2 font-serif text-lg">{p.name}</p>
-                      <p className="mt-1 text-sm text-foreground/80 flex items-center gap-2">
+                      <p className="mt-1.5 font-serif text-base md:text-lg">{p.name}</p>
+                      <p className="mt-1 text-xs md:text-sm text-foreground/80 flex items-center gap-2">
                         <Phone size={13} className="text-gold" />
                         {p.phone}
                       </p>
@@ -77,13 +107,14 @@ export function Contact() {
           </div>
 
           {/* Right: form */}
-          <div className="bg-card border border-border/70 p-8 md:p-10">
+          <div className="bg-card border border-border/70 p-6 md:p-10">
             <h3 className="font-serif text-2xl">Send a message</h3>
             <p className="mt-2 text-sm text-muted-foreground">
               We&rsquo;ll respond as soon as we can.
             </p>
 
             <form onSubmit={onSubmit} className="mt-8 space-y-6">
+              <input type="text" name="_honey" style={{ display: "none" }} />
               <FormField label="Name" name="name" required />
               <FormField label="Phone" name="phone" type="tel" required />
               <div>
@@ -98,9 +129,18 @@ export function Contact() {
                   className="w-full bg-transparent border-b border-border focus:border-gold outline-none py-3 text-base resize-none transition-colors"
                 />
               </div>
-              <button type="submit" className="btn-primary w-full sm:w-auto">
-                {sent ? "Thank you" : "Send Message"}
+              <button
+                type="submit"
+                disabled={sending}
+                className="btn-primary w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {sending ? "Sending..." : sent ? "Thank you" : "Send Message"}
               </button>
+              {error && (
+                <p className="text-xs text-[color:var(--color-destructive)] mt-2">
+                  {error}
+                </p>
+              )}
             </form>
           </div>
         </div>
