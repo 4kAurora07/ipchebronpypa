@@ -12,13 +12,24 @@ export function Hero() {
           height={1280}
           className="h-full w-full object-cover"
         />
-        {/* darken for legibility */}
-        <div className="absolute inset-0 bg-[color:var(--color-charcoal)]/55"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-charcoal)]/40 via-[color:var(--color-charcoal)]/30 to-[color:var(--color-ivory)]"></div>
+        {/* base darkening for overall legibility */}
+        <div className="absolute inset-0 bg-[color:var(--color-charcoal)]/60"></div>
+        {/* top gradient — strengthens navbar readability */}
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[color:var(--color-charcoal)]/80 to-transparent"></div>
+        {/* radial vignette — soft safe zone behind hero text */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 55% at 50% 45%, color-mix(in oklab, var(--color-charcoal) 55%, transparent) 0%, transparent 75%)",
+          }}
+        ></div>
+        {/* bottom — soft warm fade, but no white wash */}
+        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-b from-transparent via-[color:var(--color-charcoal)]/55 to-[color:var(--color-charcoal)]/85"></div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-10 text-center pt-28 pb-20 [text-shadow:0_1px_24px_rgba(0,0,0,0.35)]">
-        <p className="eyebrow fade-in delay-1 text-[color:var(--color-ivory)]/85">Est. 1971 · Pathanamthitta, Kerala</p>
+      <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-10 text-center pt-28 pb-20 [text-shadow:0_2px_18px_rgba(0,0,0,0.55)]">
+        <p className="eyebrow fade-in delay-1 text-[color:var(--color-ivory)]/95">Est. 1971 · Pathanamthitta, Kerala</p>
 
         <div className="mt-6 flex justify-center fade-in delay-2">
           <span className="gold-divider"></span>
@@ -30,7 +41,7 @@ export function Hero() {
         </h1>
 
         <p
-          className="mt-10 max-w-xl mx-auto font-light italic text-[1.35rem] md:text-[1.6rem] text-[color:var(--color-ivory)]/80 leading-[1.55] tracking-[0.01em] fade-up delay-3"
+          className="mt-10 max-w-xl mx-auto font-light italic text-[1.35rem] md:text-[1.6rem] text-[color:var(--color-ivory)]/95 leading-[1.55] tracking-[0.01em] fade-up delay-3"
           style={{ fontFamily: 'var(--font-serif-body)' }}
         >
           A Spirit-filled congregation
@@ -40,21 +51,30 @@ export function Hero() {
           and community since 1971.
         </p>
 
-        <p className="mt-10 font-mal font-light text-sm md:text-base text-gold/85 tracking-[0.05em] leading-loose fade-up delay-4">
+        <p
+          className="mt-10 font-mal text-base md:text-lg tracking-[0.04em] leading-loose fade-up delay-4"
+          style={{
+            color: "color-mix(in oklab, var(--color-gold) 80%, white)",
+            textShadow: "0 1px 14px rgba(0,0,0,0.6), 0 0 28px color-mix(in oklab, var(--color-gold) 25%, transparent)",
+          }}
+        >
           വിശ്വാസത്തിലും പ്രാർത്ഥനയിലും ഒന്നായി
         </p>
 
         <div className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 fade-up delay-4">
-          <a href="#contact" className="btn-primary">
+          <a href="#contact" className="btn-primary shadow-[0_8px_30px_rgba(0,0,0,0.45)]">
             Plan Your Visit
           </a>
-          <a href="#services" className="btn-outline">
+          <a
+            href="#services"
+            className="btn-outline border-[color:var(--color-ivory)]/80 text-[color:var(--color-ivory)] hover:bg-[color:var(--color-ivory)] hover:text-[color:var(--color-charcoal)] shadow-[0_8px_30px_rgba(0,0,0,0.35)]"
+          >
             Service Times
           </a>
         </div>
 
         {/* stats */}
-        <div className="mt-20 grid grid-cols-3 max-w-2xl mx-auto fade-up delay-5">
+        <div className="mt-16 grid grid-cols-3 max-w-2xl mx-auto fade-up delay-5">
           {[
             { v: "1971", l: "Established" },
             { v: "61", l: "Families" },
@@ -62,10 +82,10 @@ export function Hero() {
           ].map((s, i) => (
             <div
               key={s.l}
-              className={`px-4 py-2 ${i !== 0 ? "border-l border-[color:var(--color-ivory)]/30" : ""}`}
+              className={`px-4 py-2 ${i !== 0 ? "border-l border-[color:var(--color-gold)]/40" : ""}`}
             >
-              <div className="font-serif text-3xl md:text-4xl text-[color:var(--color-ivory)]">{s.v}</div>
-              <div className="mt-2 text-[11px] tracking-[0.25em] uppercase text-[color:var(--color-ivory)]/70">
+              <div className="font-serif text-3xl md:text-4xl font-medium text-[color:var(--color-ivory)]">{s.v}</div>
+              <div className="mt-2 text-[11px] tracking-[0.25em] uppercase text-[color:var(--color-ivory)]/85">
                 {s.l}
               </div>
             </div>
@@ -74,7 +94,7 @@ export function Hero() {
       </div>
 
       {/* subtle scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.3em] uppercase text-[color:var(--color-ivory)]/70 fade-in delay-5">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.3em] uppercase text-[color:var(--color-ivory)]/80 fade-in delay-5">
         Scroll
       </div>
     </section>
