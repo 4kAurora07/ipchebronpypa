@@ -22,23 +22,40 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[color:var(--color-ivory)]/85 backdrop-blur-md border-b border-border/60 py-3"
-          : "bg-transparent py-6"
+          ? "bg-[color:var(--color-ivory)]/90 backdrop-blur-md border-b border-border/60 py-3"
+          : "bg-gradient-to-b from-[color:var(--color-charcoal)]/55 to-transparent py-6"
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 md:px-10 flex items-center justify-between">
-        <a href="#top" className="flex items-baseline gap-2">
-          <span className="font-serif text-lg md:text-xl tracking-wide text-foreground">
+        <a
+          href="#top"
+          className={`flex items-baseline gap-3 ${
+            scrolled ? "" : "[text-shadow:0_1px_14px_rgba(0,0,0,0.6)]"
+          }`}
+        >
+          <span
+            className={`font-serif text-lg md:text-xl tracking-wide font-medium ${
+              scrolled ? "text-foreground" : "text-[color:var(--color-ivory)]"
+            }`}
+          >
             IPC Hebron
           </span>
-          <span className="hidden sm:inline text-[11px] tracking-[0.28em] uppercase text-gold">
+          <span className="hidden sm:inline text-[11px] tracking-[0.3em] uppercase text-gold">
             Manjanikara
           </span>
         </a>
 
         <nav className="hidden md:flex items-center gap-10">
           {links.map((l) => (
-            <a key={l.href} href={l.href} className="nav-link">
+            <a
+              key={l.href}
+              href={l.href}
+              className={`nav-link font-medium ${
+                scrolled
+                  ? ""
+                  : "!text-[color:var(--color-ivory)] [text-shadow:0_1px_12px_rgba(0,0,0,0.55)] hover:!text-[color:var(--color-gold)]"
+              }`}
+            >
               {l.label}
             </a>
           ))}
@@ -46,7 +63,9 @@ export function Navbar() {
 
         <button
           aria-label="Menu"
-          className="md:hidden text-foreground p-2"
+          className={`md:hidden p-2 ${
+            scrolled ? "text-foreground" : "text-[color:var(--color-ivory)]"
+          }`}
           onClick={() => setOpen(!open)}
         >
           {open ? <X size={22} /> : <Menu size={22} />}
