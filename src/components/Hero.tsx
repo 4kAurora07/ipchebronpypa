@@ -29,12 +29,18 @@ export function Hero() {
           <span className="block italic text-gold font-normal">Manjanikara</span>
         </h1>
 
-        <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-[color:var(--color-ivory)]/90 leading-relaxed fade-up delay-3">
-          A Spirit-filled congregation rooted in faith, worship, and community
-          since 1971.
+        <p
+          className="mt-10 max-w-xl mx-auto font-light italic text-[1.35rem] md:text-[1.6rem] text-[color:var(--color-ivory)]/80 leading-[1.55] tracking-[0.01em] fade-up delay-3"
+          style={{ fontFamily: 'var(--font-serif-body)' }}
+        >
+          A Spirit-filled congregation
+          <br className="hidden sm:block" />
+          rooted in faith, worship,
+          <br className="hidden sm:block" />
+          and community since 1971.
         </p>
 
-        <p className="mt-4 font-mal text-base md:text-lg text-gold fade-up delay-4">
+        <p className="mt-10 font-mal font-light text-sm md:text-base text-gold/85 tracking-[0.05em] leading-loose fade-up delay-4">
           വിശ്വാസത്തിലും പ്രാർത്ഥനയിലും ഒന്നായി
         </p>
 

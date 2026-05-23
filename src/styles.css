@@ -13,7 +13,8 @@
 @theme inline {
   --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
   --font-sans: "Inter", "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
-  --font-mal: "Noto Sans Malayalam", "Inter", sans-serif;
+  --font-mal: "Noto Serif Malayalam", "Noto Sans Malayalam", serif;
+  --font-serif-body: "Cormorant Garamond", "EB Garamond", Georgia, serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
