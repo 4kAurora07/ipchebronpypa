@@ -3,18 +3,7 @@ import { createServerFn } from "@tanstack/react-start";
 export const sendContactEmail = createServerFn({ method: "POST" })
   .inputValidator((data: { name: string; phone: string; message: string }) => data)
   .handler(async ({ data }) => {
-    let apiKey = process.env.RESEND_API_KEY;
-
-    if (!apiKey || apiKey === "re_your_api_key_here") {
-      try {
-        const secrets = await import("./secrets");
-        if (secrets.RESEND_API_KEY && secrets.RESEND_API_KEY !== "re_your_api_key_here") {
-          apiKey = secrets.RESEND_API_KEY;
-        }
-      } catch {
-        // secrets.ts does not exist in production
-      }
-    }
+    const apiKey = process.env.RESEND_API_KEY ?? '';
 
     if (!apiKey || apiKey === "re_your_api_key_here") {
       console.error("Resend API Key is not configured.");
