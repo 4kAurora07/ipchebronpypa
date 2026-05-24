@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { MapPin, Phone, ExternalLink } from "lucide-react";
-import { sendContactEmail } from "@/lib/contact.functions";
 
 const people = [
   { role: "Pastor", name: "Pr. Shaji Kallissery", phone: "+91 94461 25557" },
@@ -37,7 +36,15 @@ export function Contact() {
     const message = formData.get("message") as string;
 
     try {
-      await sendContactEmail({ data: { name, phone, message } });
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, message }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error((data as any).error || "Failed to send");
+      }
       setSent(true);
       (e.target as HTMLFormElement).reset();
       setTimeout(() => setSent(false), 5000);
