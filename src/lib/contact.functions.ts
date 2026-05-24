@@ -6,6 +6,14 @@ export const sendContactEmail = createServerFn({ method: "POST" })
     let apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey || apiKey === "re_your_api_key_here") {
+      if (process.env.NODE_ENV === "development" || !process.env.NODE_ENV) {
+        console.warn("--- Development Mode: Resend API Key is not configured. Mocking email sending ---");
+        console.info(`To: ipchebronpypa10@gmail.com`);
+        console.info(`Subject: New Message from ${data.name} | IPC Hebron`);
+        console.info(`Message: ${data.message}`);
+        console.warn("--------------------------------------------------------------------------------");
+        return { success: true };
+      }
       console.error("Resend API Key is not configured.");
       throw new Error("Email sending is currently unavailable. Please contact the administrator.");
     }
