@@ -6,17 +6,6 @@ export const sendContactEmail = createServerFn({ method: "POST" })
     let apiKey = process.env.RESEND_API_KEY;
 
     if (!apiKey || apiKey === "re_your_api_key_here") {
-      try {
-        const secrets = await import("./secrets");
-        if (secrets.RESEND_API_KEY && secrets.RESEND_API_KEY !== "re_your_api_key_here") {
-          apiKey = secrets.RESEND_API_KEY;
-        }
-      } catch {
-        // secrets.ts does not exist in production
-      }
-    }
-
-    if (!apiKey || apiKey === "re_your_api_key_here") {
       console.error("Resend API Key is not configured.");
       throw new Error("Email sending is currently unavailable. Please contact the administrator.");
     }
