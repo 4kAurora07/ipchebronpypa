@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MapPin, Phone, ExternalLink } from "lucide-react";
+import { sendContactEmail } from "@/lib/contact.functions";
 
 const people = [
   { role: "Pastor", name: "Pr. Shaji Kallissery", phone: "+91 94461 25557" },
@@ -20,30 +21,28 @@ export function Contact() {
     setError(null);
 
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    const honey = formData.get("_honey") as string;
+
+    // Silent honeypot spam protection
+    if (honey) {
+      setSent(true);
+      (e.target as HTMLFormElement).reset();
+      setTimeout(() => setSent(false), 5000);
+      setSending(false);
+      return;
+    }
+
+    const name = formData.get("name") as string;
+    const phone = formData.get("phone") as string;
+    const message = formData.get("message") as string;
 
     try {
-      const response = await fetch("https://formsubmit.co/ajax/ipchebronpypa10@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          _subject: "New Message from IPC Hebron Manjanikara Website",
-        }),
-      });
-
-      if (response.ok) {
-        setSent(true);
-        (e.target as HTMLFormElement).reset();
-        setTimeout(() => setSent(false), 5000);
-      } else {
-        throw new Error("Failed to send message.");
-      }
-    } catch (err) {
-      setError("Failed to send. Please try again or call us directly.");
+      await sendContactEmail({ data: { name, phone, message } });
+      setSent(true);
+      (e.target as HTMLFormElement).reset();
+      setTimeout(() => setSent(false), 5000);
+    } catch (err: any) {
+      setError(err.message || "Failed to send. Please try again or call us directly.");
     } finally {
       setSending(false);
     }
