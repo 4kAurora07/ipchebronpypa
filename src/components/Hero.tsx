@@ -10,7 +10,7 @@ export function Hero() {
           alt="IPC Hebron Manjanikara church building at golden hour"
           width={1920}
           height={1280}
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-[50%_25%] md:object-center"
         />
         {/* base darkening for overall legibility — slightly darker on mobile */}
         <div className="absolute inset-0 bg-[color:var(--color-charcoal)]/75 md:bg-[color:var(--color-charcoal)]/60"></div>
