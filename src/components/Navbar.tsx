@@ -21,25 +21,35 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Track header height so dropdown sits flush below it
+  // ResizeObserver so dropdown top updates when header shrinks/grows
   useEffect(() => {
-    const updateHeight = () => {
-      if (headerRef.current) {
-        setHeaderHeight(headerRef.current.offsetHeight);
-      }
+    if (!headerRef.current) return;
+    const el = headerRef.current;
+    const update = () => setHeaderHeight(el.offsetHeight);
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    window.addEventListener("resize", update);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", update);
     };
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-    return () => window.removeEventListener("resize", updateHeight);
-  }, [scrolled, open]);
+  }, []);
 
+  // Delay body scroll lock by 300ms to avoid layout shift mid-animation
   useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout> | undefined;
     if (open) {
-      document.body.style.overflow = "hidden";
+      timeout = setTimeout(() => {
+        document.body.style.overflow = "hidden";
+      }, 300);
     } else {
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      if (timeout) clearTimeout(timeout);
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -115,24 +125,32 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile dropdown — rendered outside header, positioned below it */}
+      {/* Backdrop — sibling of header, below dropdown */}
       <div
-        className={`fixed left-0 right-0 z-40 md:hidden ${open ? "pointer-events-auto" : "pointer-events-none"}`}
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 z-[48] md:hidden bg-black/30 transition-opacity duration-300 ${
+          open ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+      />
+
+      {/* Mobile dropdown — sibling of header, outside its overflow */}
+      <div
+        className={`fixed left-0 right-0 z-[49] md:hidden transition-all duration-300 ease-out ${
+          open
+            ? "opacity-100 translate-y-0 visible"
+            : "opacity-0 -translate-y-2 invisible"
+        }`}
         style={{ top: headerHeight }}
       >
-        {/* Sliding panel */}
-        <div
-          className={`bg-[#F7F4EE] shadow-2xl transition-all duration-300 ease-in-out overflow-hidden ${
-            open ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
+        <div className="bg-[#F7F4EE] shadow-2xl">
           <nav className="flex flex-col">
             {links.map((l, i) => (
               <a
                 key={l.href}
                 href={l.href}
                 onClick={(e) => handleScrollTo(e, l.href)}
-                className={`flex items-center justify-between px-6 py-4 font-serif text-lg text-[#1F1B17] border-b border-black/6 last:border-b-0 hover:text-[#B89B5E] hover:bg-[#f0ece3] active:bg-[#e8e3d8] transition-all duration-200 ${
+                className={`flex items-center justify-between px-6 py-4 font-serif text-lg text-[#1F1B17] border-b border-black/6 last:border-b-0 hover:text-[#B89B5E] hover:bg-[#f0ece3] active:bg-[#e8e3d8] transition-all duration-300 ${
                   open ? "translate-x-0 opacity-100" : "-translate-x-4 opacity-0"
                 }`}
                 style={{
@@ -153,12 +171,6 @@ export function Navbar() {
             </div>
           </nav>
         </div>
-
-        {/* Dim backdrop — tap to close */}
-        <div
-          className={`h-screen bg-black/30 transition-opacity duration-300 ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-          onClick={() => setOpen(false)}
-        />
       </div>
     </>
   );
