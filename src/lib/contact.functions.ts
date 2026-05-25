@@ -23,8 +23,8 @@ export const sendContactEmail = createServerFn({ method: "POST" })
 
     try {
       const result = await resend.emails.send({
-        from: "Contact Form <onboarding@resend.dev>",
-        to: "ipchebronpypa10@gmail.com",
+        from: "IPC Hebron Contact <onboarding@resend.dev>", // ✅ Resend shared domain — works because `to` is your verified account email
+        to: ["ipchebronpypa10@gmail.com"],                  // ✅ Must be your Resend signup email for shared domain to work
         subject: `New Message from ${data.name} | IPC Hebron`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eaeaea; border-radius: 5px;">
