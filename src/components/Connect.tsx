@@ -50,8 +50,8 @@ export function Connect() {
             Stay <span className="italic text-gold">connected</span> with our community
           </h2>
           <p className="mt-5 text-muted-foreground text-[15px] sm:text-base leading-relaxed">
-            Moments of worship, fellowship, and youth gatherings —
-            follow along as our church family lives out its faith together.
+            Moments of worship, fellowship, and youth gatherings.
+            Follow along as our church family lives out its faith together.
           </p>
           <p className="mt-4 font-mal text-gold/85 text-xs md:text-sm tracking-[0.05em]">
             സഹവാസത്തിൽ ഒന്നായി
@@ -71,7 +71,7 @@ export function Connect() {
           <SocialCard
             href={YOUTUBE_URL}
             icon={<Youtube size={22} />}
-            handle="IPC Hebron Manjanikara"
+            handle="IPC Hebron Manjanikkara"
             platform="YouTube"
             description="Messages, worship moments, sermons, and church updates."
             cta="Watch Sermons & Shorts"

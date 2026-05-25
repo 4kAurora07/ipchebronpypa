@@ -7,9 +7,9 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6 md:px-10 py-12 md:py-16">
         <div className="grid md:grid-cols-3 gap-8 md:gap-10 items-start">
           <div>
-            <p className="font-serif text-2xl">IPC Hebron Manjanikara</p>
+            <p className="font-serif text-2xl">IPC Hebron Manjanikkara</p>
             <p className="mt-2.5 text-sm text-ivory/65 leading-relaxed">
-              Est. 1971 · Manjanikara, Pathanamthitta, Kerala
+              Est. 1971 · Manjanikkara, Pathanamthitta, Kerala
             </p>
             <p className="mt-3 font-mal text-gold/90 text-sm">
               ദൈവ മഹത്വത്തിനായി
@@ -61,7 +61,7 @@ export function Footer() {
         </div>
 
         <div className="mt-10 md:mt-14 pt-6 border-t border-ivory/10 flex flex-col sm:flex-row justify-between gap-3 text-xs text-ivory/50">
-          <p>© {new Date().getFullYear()} IPC Hebron Manjanikara. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} IPC Hebron Manjanikkara. All rights reserved.</p>
           <p>Designed by Alwin Anil Zachariah</p>
         </div>
       </div>

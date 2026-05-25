@@ -7,7 +7,7 @@ export function Hero() {
       <div className="absolute inset-0">
         <img
           src={heroImg}
-          alt="IPC Hebron Manjanikara church building at golden hour"
+          alt="IPC Hebron Manjanikkara church building at golden hour"
           width={1920}
           height={1280}
           className="h-full w-full object-cover object-[50%_25%] md:object-center"
@@ -38,7 +38,7 @@ export function Hero() {
       />
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 md:px-10 text-center pt-28 pb-24 md:pt-40 md:pb-24 [text-shadow:0_2px_18px_rgba(0,0,0,0.55)] flex flex-col items-center">
-        <p className="eyebrow fade-in delay-1 text-[color:var(--color-ivory)]/95 text-[10px] md:text-xs tracking-[0.24em] md:tracking-[0.28em]">
+        <p className="eyebrow fade-in delay-1 text-[color:var(--color-ivory)]/95 text-[11px] md:text-sm tracking-[0.24em] md:tracking-[0.28em]">
           Est. 1971 · Pathanamthitta, Kerala
         </p>
 
@@ -46,26 +46,26 @@ export function Hero() {
           <span className="gold-divider"></span>
         </div>
 
-        <h1 className="mt-5 md:mt-8 font-serif text-[2.25rem] sm:text-6xl md:text-7xl leading-[1.1] md:leading-[1.05] text-[color:var(--color-ivory)] fade-up delay-2">
+        <h1 className="mt-5 md:mt-8 font-serif text-[2.75rem] sm:text-7xl md:text-8xl leading-[1.1] md:leading-[1.05] text-[color:var(--color-ivory)] fade-up delay-2">
           IPC Hebron
-          <span className="block italic text-gold font-normal text-2xl sm:text-4xl md:text-5xl mt-1 md:mt-2.5 tracking-wide">
-            Manjanikara
+          <span className="block italic text-gold font-normal text-3xl sm:text-5xl md:text-6xl mt-1 md:mt-2.5 tracking-wide">
+            Manjanikkara
           </span>
         </h1>
 
         <p
-          className="mt-5 md:mt-10 max-w-md md:max-w-xl mx-auto font-light italic text-base md:text-2xl text-[color:var(--color-ivory)]/90 leading-relaxed md:leading-[1.55] tracking-[0.01em] fade-up delay-3 px-2 md:px-0"
+          className="mt-5 md:mt-10 max-w-md md:max-w-xl mx-auto font-light italic text-lg md:text-3xl text-[color:var(--color-ivory)]/90 leading-relaxed md:leading-[1.55] tracking-[0.01em] fade-up delay-3 px-2 md:px-0"
           style={{ fontFamily: 'var(--font-serif-body)' }}
         >
-          A Spirit-filled congregation{" "}
+          A Spirit-filled church in Kerala,{" "}
           <br className="hidden sm:block" />
-          rooted in faith, worship,{" "}
+          gathering since 1971 to worship,{" "}
           <br className="hidden sm:block" />
-          and community since 1971.
+          pray, and grow in faith.
         </p>
 
         <p
-          className="mt-5 mb-7 md:my-10 font-mal text-sm md:text-base tracking-[0.04em] leading-loose fade-up delay-4 px-4"
+          className="mt-5 mb-7 md:my-10 font-mal text-base md:text-xl tracking-[0.04em] leading-loose fade-up delay-4 px-4"
           style={{
             color: "color-mix(in oklab, var(--color-gold) 90%, white)",
             textShadow: "0 1px 14px rgba(0,0,0,0.6), 0 0 28px color-mix(in oklab, var(--color-gold) 20%, transparent)",
@@ -97,10 +97,10 @@ export function Hero() {
             { v: "6", l: "Meetings", lFull: "Weekly Meetings" },
           ].map((s) => (
             <div key={s.l} className="px-2 md:px-6 py-1 text-center">
-              <div className="font-serif text-2xl md:text-4xl font-medium text-[color:var(--color-ivory)] leading-none">
+              <div className="font-serif text-3xl md:text-5xl font-medium text-[color:var(--color-ivory)] leading-none">
                 {s.v}
               </div>
-              <div className="mt-2 text-[9px] md:text-[11px] tracking-[0.2em] md:tracking-[0.25em] uppercase text-[color:var(--color-ivory)]/80 leading-none">
+              <div className="mt-2 text-[10px] md:text-xs tracking-[0.2em] md:tracking-[0.25em] uppercase text-[color:var(--color-ivory)]/80 leading-none">
                 <span className="sm:hidden">{s.l}</span>
                 <span className="hidden sm:inline">{s.lFull || s.l}</span>
               </div>

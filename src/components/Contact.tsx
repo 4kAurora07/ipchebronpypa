@@ -68,7 +68,7 @@ export function Contact() {
                 <div>
                   <p className="eyebrow">Visit Us</p>
                   <p className="mt-2 font-serif text-lg md:text-xl">
-                    Manjanikara, Pathanamthitta
+                    Manjanikkara, Pathanamthitta
                   </p>
                   <p className="text-muted-foreground text-sm">Kerala, India</p>
                   <a

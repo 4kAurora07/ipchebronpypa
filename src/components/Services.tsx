@@ -49,7 +49,7 @@ export function Services() {
         </div>
 
         <p className="mt-10 text-center text-sm text-muted-foreground">
-          First-time visitor? Reach out to us — we&rsquo;d love to welcome you in person.
+          New here? Just show up. You're welcome anytime.
         </p>
       </div>
     </section>
