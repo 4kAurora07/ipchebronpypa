@@ -10,7 +10,7 @@ import { Footer } from "@/components/Footer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "IPC Hebron Manjanikkara | A Spirit-filled Congregation Since 1971" },
+      { title: "IPC Hebron PYPA" },
       {
         name: "description",
         content:

@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import faviconUrl from "../assets/pypa-logo.png?url";
 
 function NotFoundComponent() {
   return (
@@ -84,6 +85,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Hebron Grace is a premium single-page website for a traditional Indian Pentecostal Church." },
     ],
     links: [
+      {
+        rel: "icon",
+        type: "image/png",
+        href: faviconUrl,
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
