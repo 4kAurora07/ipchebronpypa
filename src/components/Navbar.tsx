@@ -110,17 +110,44 @@ export function Navbar() {
             ))}
           </nav>
 
-          {/* Hamburger */}
+          {/* Hamburger — gilded bespoke toggle */}
           <button
             type="button"
             aria-label={open ? "Close Menu" : "Open Menu"}
             aria-expanded={open}
-            className="md:hidden flex flex-col justify-center items-center gap-[5px] w-10 h-10 rounded-full hover:bg-black/8 active:scale-95 transition-all duration-200 cursor-pointer"
             onClick={() => setOpen((p) => !p)}
+            className={`md:hidden group relative flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-gradient-to-tr from-white/5 to-transparent transition-all duration-500 active:scale-95 ${
+              scrolled || open
+                ? "border border-[#B89B5E]/50 hover:border-[#B89B5E] hover:shadow-[0_0_15px_rgba(184,155,94,0.18)]"
+                : "border border-[#B89B5E]/40 hover:border-[#B89B5E] hover:shadow-[0_0_15px_rgba(184,155,94,0.25)]"
+            }`}
           >
-            <span className={`block h-0.5 w-5 rounded-full transition-all duration-300 origin-center ${scrolled || open ? "bg-[#1F1B17]" : "bg-white"} ${open ? "translate-y-[7px] rotate-45" : ""}`} />
-            <span className={`block h-0.5 w-5 rounded-full transition-all duration-300 ${scrolled || open ? "bg-[#1F1B17]" : "bg-white"} ${open ? "opacity-0 scale-x-0" : ""}`} />
-            <span className={`block h-0.5 w-5 rounded-full transition-all duration-300 origin-center ${scrolled || open ? "bg-[#1F1B17]" : "bg-white"} ${open ? "-translate-y-[7px] -rotate-45" : ""}`} />
+            <span className="relative block h-4 w-5">
+              {/* Top line */}
+              <span
+                className={`absolute top-0 right-0 h-[1.5px] origin-right rounded-full transition-all duration-300 ${
+                  scrolled || open
+                    ? "bg-gradient-to-l from-[#1F1B17] to-[#B89B5E]"
+                    : "bg-gradient-to-l from-white to-[#B89B5E]"
+                } ${open ? "w-[22px] -rotate-45 -translate-x-[1px]" : "w-full"}`}
+              />
+              {/* Middle line — 3/4 width for editorial elegance */}
+              <span
+                className={`absolute top-1/2 right-0 h-[1.5px] -translate-y-1/2 rounded-full transition-all duration-200 ${
+                  scrolled || open ? "bg-[#1F1B17]" : "bg-white"
+                } ${open ? "opacity-0 w-0" : "w-3/4"}`}
+              />
+              {/* Bottom line — 90% width */}
+              <span
+                className={`absolute bottom-0 right-0 h-[1.5px] origin-right rounded-full transition-all duration-300 ${
+                  scrolled || open
+                    ? "bg-gradient-to-l from-[#1F1B17] to-[#B89B5E]"
+                    : "bg-gradient-to-l from-white to-[#B89B5E]"
+                } ${open ? "w-[22px] rotate-45 -translate-x-[1px]" : "w-[90%]"}`}
+              />
+            </span>
+            {/* Hover halo ring */}
+            <span className="pointer-events-none absolute inset-0 rounded-full border border-transparent opacity-0 transition-all duration-500 group-hover:scale-110 group-hover:border-[#B89B5E]/25 group-hover:opacity-100" />
           </button>
         </div>
       </header>
