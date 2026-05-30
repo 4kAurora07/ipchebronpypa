@@ -1,3 +1,13 @@
 [build]
   command = "npm run build"
   publish = "dist/client"
+
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/.netlify/functions/server"
+  status = 200
+
+[[redirects]]
+  from = "/googlec38197fae8955128.html"
+  to = "/googlec38197fae8955128.html"
+  status = 200
